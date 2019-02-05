@@ -1,0 +1,57 @@
+version: '2'
+
+services:
+
+ zf:
+        build: .
+
+        ports:
+          - "80:80"
+          - "443:443"
+        restart: always
+        depends_on:
+          - db
+        volumes:
+          - .:/var/www
+
+
+
+
+
+
+ db:
+      image: mysql/mysql-server:5.6
+      ports:
+         - "3306:3306"
+      restart: always
+      volumes:
+        -  testdb:/var/lib/mysql
+        - ./db:/docker-entrypoint-initdb.d/:ro
+
+      environment:
+              MYSQL_DATABASE: "test"
+              MYSQL_USER: "test"
+              MYSQL_PASSWORD: "test"
+              MYSQL_ROOT_PASSWORD: "root"
+
+ phpmyadmin:
+   image: phpmyadmin/phpmyadmin
+   container_name: phpmyadmin
+   depends_on:
+     - db
+   restart: always
+   ports:
+     - "8080:80"
+   environment:
+     - PMA_ARBITRARY=1
+
+ mailhog:
+      image: mailhog/mailhog
+      restart: always
+      expose:
+        - 1025
+      ports:
+          - "8025:8025"
+
+volumes:
+   testdb:
