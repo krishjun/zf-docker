@@ -37,7 +37,7 @@ https://localhost
 
 And can access phpmyadmin at
 
-localhost:8080
+http://localhost:8080
 
 
 Advance :
@@ -47,4 +47,7 @@ Advance :
       $config = ['port'=>1025,'auth'=>'login'];
       $transport = new Zend_Mail_Transport_Smtp('mailhog', $config);
 
+And then you can access all outgoing emails at
+
+http://localhost:8025
  
