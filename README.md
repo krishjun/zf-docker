@@ -4,7 +4,7 @@ This is base setup for Zend Framework 1, 2, 3 application.
 Although it can be use with any php application which 
 has web directory with name "public"
 
-Main idea is to provide simple LAMP,WAMP,XAMPP replacement .
+Main idea is to provide simple LAMP,WAMP,XAMPP replacement for Zend Framework development
 
 
 Features:
@@ -20,8 +20,7 @@ How to Use :
 1) Copy paste all files inside this directory . So that
 your project "public" directory is directly under this (zf-docker) directory .
 
-2) Take a dump of your existing database and put that sql file inside directory db
-[Delete/Remove db/test.sql ]
+2) Take a dump of your existing database and replace db/test.sql with your sql file
 
 3) Update database details inside docker-compose.yml 
 by updating following variables
@@ -40,5 +39,12 @@ And can access phpmyadmin at
 
 localhost:8080
 
+
+Advance :
+
+1) To configure Zend Mail use following SMTP settings
+
+      $config = ['port'=>1025,'auth'=>'login'];
+      $transport = new Zend_Mail_Transport_Smtp('mailhog', $config);
 
  
