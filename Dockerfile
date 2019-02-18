@@ -1,11 +1,12 @@
 FROM php:5.6-apache
 
+WORKDIR /var/www
+
 RUN apt-get update \
  && apt-get install -y git zlib1g-dev \
  && docker-php-ext-install zip \
  && docker-php-ext-install pdo pdo_mysql \
  && docker-php-ext-install mysqli \
- && docker-php-ext-enable mysqli \
  && a2enmod rewrite \
  && sed -i 's!/var/www/html!/var/www/public!g' /etc/apache2/sites-available/000-default.conf \
  && sed -i 's!/var/www/html!/var/www/public!g' /etc/apache2/sites-available/default-ssl.conf \
@@ -17,4 +18,3 @@ RUN apt-get update \
 
 
 
-WORKDIR /var/www
